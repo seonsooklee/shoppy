@@ -47,6 +47,7 @@
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: 50px;
 }
 
 .product-item-wrapper {
@@ -81,6 +82,102 @@
 
         .price {
             font-size: 18px;
+            font-weight: bold;
+        }
+    }
+}
+
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 300px;
+        height: auto;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            border: 1px solid lightgray;
+        }
+    }
+}
+
+.detail-item-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-top: 50px;
+
+    img {
+        width: 400px;
+        margin-right: 20px;
+    }
+
+    .info-wrapper {
+        width: 300px;
+
+        .business-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        .select-wrapper {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 12px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            select {
+                border: 1px solid lightgray;
+                height: 40px;
+                padding: 0 20px;
+                -moz-appearance:none; /* Firefox */
+                -webkit-appearance:none; /* Safari and Chrome */
+                appearance:none;
+            }
+        }
+
+        .divider {
+            margin: 40px 0;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            width: 100%;
+            padding: 0 20px;
+            background: black;
+            color: white;
+            font-size: 14px;
             font-weight: bold;
         }
     }

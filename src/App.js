@@ -1,14 +1,14 @@
 import './App.scss';
 import BaseHeader from "./components/BaseHeader";
 import {Outlet} from "react-router-dom";
-import {LoginProvider} from "./context/LoginContext";
+import {AuthProvider} from "./context/AuthContext";
 
 function App() {
   return (
-    <LoginProvider>
+    <AuthProvider>
       <BaseHeader/>
       <Outlet/>
-    </LoginProvider>
+    </AuthProvider>
   );
 }
 

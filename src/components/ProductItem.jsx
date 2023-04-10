@@ -1,18 +1,17 @@
 import React from 'react';
-import image from '../images/5.webp'
 import {useNavigate} from "react-router-dom";
 
-function ProductItem(props) {
+function ProductItem({item}) {
   const navigate = useNavigate()
   return (
-    <div className={'product-item-wrapper'} onClick={() => navigate('/products/detail')}>
+    <div className={'product-item-wrapper'} onClick={() => navigate(`/product/${item.id}`)}>
       <div className="image-wrapper">
-        <img src={image} alt="product"/>
+        <img src={item.url} alt="product"/>
       </div>
       <div className="info-wrapper">
-        <div className="business-name">유라고</div>
-        <div className={'name'}>reversible shirts</div>
-        <div className={'price'}>120,000</div>
+        <div className="business-name">{item.company}</div>
+        <div className={'name'}>{item.name}</div>
+        <div className={'price'}>{item.price.toLocaleString()}</div>
       </div>
     </div>
   );
