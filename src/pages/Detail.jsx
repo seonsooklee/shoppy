@@ -1,10 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {getProduct} from "../api/firebase";
+import {addCart, getProduct} from "../api/firebase";
+import {useAuth} from "../context/AuthContext";
 
 function Detail() {
   const [product, setProduct] = useState();
+  const [count, setCount] = useState(1);
+  const [option, setOption] = useState()
   const {id} = useParams()
+  const {user} = useAuth()
+
+  const handleOption = (e) => {
+    setOption(e.target.value)
+  }
+
+  const onClickAddCart = () => {
+    const userId = user.uid
+    const item = {...product, chooseOption: option, count}
+    addCart(item, userId)
+      .then((res) => console.log(res))
+  }
 
   useEffect(() => {
     getProduct(id)
@@ -21,7 +36,7 @@ function Detail() {
         <div className="description">{product?.description}</div>
         <div className='select-wrapper'>
           <label htmlFor="options">Choose a option</label>
-          <select id="options">
+          <select id="options" value={option} onChange={handleOption} required>
             <option value="">--Please choose an option--</option>
             {
               product?.options.split(',').map((option, index) => (
@@ -30,8 +45,9 @@ function Detail() {
             }
           </select>
         </div>
+        <input type="number" name='count' value={count} placeholder={'수량'} onChange={()=>setCount}/>
         <hr className='divider'/>
-        <button>장바구니 담기</button>
+        <button onClick={onClickAddCart}>장바구니 담기</button>
       </div>
     </div>
   );

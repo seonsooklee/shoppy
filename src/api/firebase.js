@@ -1,6 +1,6 @@
 import {initializeApp} from "firebase/app";
 import {getAuth, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged} from "firebase/auth";
-import {getDatabase, ref, child, get, set} from "firebase/database";
+import {getDatabase, ref, child, get, set, remove} from "firebase/database";
 import {v4 as uuid} from 'uuid'
 
 const firebaseConfig = {
@@ -68,8 +68,8 @@ export const getProducts = () => {
     return [];
   })
     .catch((error) => {
-    console.error(error);
-  });
+      console.error(error);
+    });
 }
 
 export const getProduct = (id) => {
@@ -84,4 +84,22 @@ export const getProduct = (id) => {
   }).catch((error) => {
     console.error(error);
   });
+}
+
+export const addCart = async (product, userId) => {
+  return set(ref(db, `cart/${userId}/${product.id}`), product)
+}
+
+export const getCart = async (userId) => {
+  return get(child(dbRef, `cart/${userId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val())
+      }
+      return [];
+    })
+}
+
+export const removeCartItem = async (userId, id) =>{
+  return remove(ref(db, `cart/${userId}/${id}`))
 }
